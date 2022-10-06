@@ -1,0 +1,37 @@
+========== Q1 ==========
+
+SELECT trips.trip_id,
+      trips.start_date,
+      trips.subscriber_type,
+      stations.landmark,
+      trips.start_station_name,
+      trips.start_station_id,
+      stations.station_id,
+      stations.name
+FROM `bigquery-public-data.san_francisco.bikeshare_trips` AS trips
+JOIN `bigquery-public-data.san_francisco.bikeshare_stations` AS stations
+ON trips.start_station_id = stations.station_id
+WHERE trips.start_date BETWEEN '2016-01-01 00:00:00 UTC' AND '2016-03-31 23:59:00 UTC'
+AND trips.subscriber_type ='Subscriber'
+AND stations.landmark ='Redwood City'
+AND CAST(trips.start_date AS STRING) LIKE '%2016%'
+ORDER BY start_date ASC
+
+========== Q2 ==========
+
+SELECT trips.trip_id,
+      trips.start_date,
+      trips.subscriber_type,
+      stations.landmark,
+      trips.start_station_name,
+      trips.start_station_id,
+      stations.station_id,
+      stations.name
+FROM `bigquery-public-data.san_francisco.bikeshare_trips` AS trips
+JOIN `bigquery-public-data.san_francisco.bikeshare_stations` AS stations
+ON trips.start_station_id = stations.station_id
+WHERE trips.start_date BETWEEN '2016-04-01 00:00:00 UTC' AND '2016-06-30 23:59:00 UTC'
+AND trips.subscriber_type ='Subscriber'
+AND stations.landmark ='Redwood City'
+AND CAST(trips.start_date AS STRING) LIKE '%2016%'
+ORDER BY start_date ASC
